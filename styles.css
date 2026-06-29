@@ -2,7 +2,7 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Poppins,sans-serif;
+    font-family:"Poppins",sans-serif;
 }
 
 body{
@@ -51,8 +51,8 @@ body{
     text-decoration:none;
     background:#e6f4ff;
     color:#0095ff;
-    padding:10px 22px;
-    border-radius:12px;
+    padding:10px 20px;
+    border-radius:10px;
     font-weight:600;
 }
 
@@ -77,8 +77,8 @@ body{
 
 .content p{
     margin:25px 0;
+    color:#666;
     line-height:1.7;
-    color:#777;
 }
 
 .btn{
@@ -86,8 +86,8 @@ body{
     text-decoration:none;
     background:#0095ff;
     color:#fff;
-    padding:15px 30px;
-    border-radius:15px;
+    padding:15px 28px;
+    border-radius:12px;
 }
 
 .image{
@@ -96,116 +96,105 @@ body{
 }
 
 .image img{
-    width:430px;
+    width:420px;
     max-width:100%;
 }
 
-/* Hide checkbox */
-
-#menu{
-    display:none;
-}
-
-/* Hamburger */
+/* Hamburger Button */
 
 .menu-btn{
     display:none;
-    flex-direction:column;
+    background:none;
+    border:none;
     cursor:pointer;
+    padding:5px;
+    flex-direction:column;
+    gap:5px;
 }
 
 .menu-btn span{
     width:28px;
     height:3px;
     background:#333;
-    margin:4px 0;
-    transition:.3s;
+    transition:0.3s;
+}
+
+.menu-btn:focus{
+    outline:2px solid #0095ff;
+    outline-offset:4px;
 }
 
 /* Tablet */
 
-@media(max-width:768px){
+@media (max-width:768px){
 
     .hero{
         grid-template-columns:1fr;
         text-align:center;
     }
 
-    .content{
-        order:1;
+    .content h1{
+        font-size:36px;
     }
 
     .image{
-        order:2;
-    }
-
-    .content h1{
-        font-size:36px;
+        margin-top:20px;
     }
 
 }
 
 /* Mobile */
 
-@media(max-width:576px){
+@media (max-width:576px){
 
-    /* Hide normal menu */
-
-    .nav{
-        position:fixed;
-        top:0;
-        right:0;
-        width:250px;
-        height:100vh;
-        background:#1f2937;
-
-        transform:translateX(100%);
-        transition:transform .4s ease;
-
+    .menu-btn{
         display:flex;
-        justify-content:center;
-        align-items:center;
+        z-index:1000;
     }
 
-    /* Show menu after clicking */
+    .user-btn{
+        display:none;
+    }
 
-    #menu:checked ~ .nav{
-        transform:translateX(0);
+    .nav{
+        position:absolute;
+        top:80px;
+        right:0;
+        width:220px;
+        background:#1f2937;
+        border-radius:10px;
+        padding:20px;
+        display:none;
+    }
+
+    /* Required :focus pseudo-class */
+
+    .menu-btn:focus + .nav{
+        display:block;
     }
 
     .nav ul{
         flex-direction:column;
-        gap:30px;
+        gap:20px;
     }
 
     .nav a{
         color:white;
-        font-size:22px;
+        font-size:18px;
     }
 
-    .menu-btn{
-        display:flex;
-        z-index:1001;
+    /* Hamburger animation */
+
+    .menu-btn:focus span:nth-child(1){
+        transform:rotate(45deg) translate(6px,6px);
     }
 
-    /* Animate hamburger */
-
-    #menu:checked + .menu-btn span:nth-child(1){
-        transform:rotate(45deg) translate(7px,7px);
-    }
-
-    #menu:checked + .menu-btn span:nth-child(2){
+    .menu-btn:focus span:nth-child(2){
         opacity:0;
     }
 
-    #menu:checked + .menu-btn span:nth-child(3){
-        transform:rotate(-45deg) translate(8px,-8px);
-    }
-
-    /* Hide username on very small screens */
-
-    .user-btn{
-        display:none;
+    .menu-btn:focus span:nth-child(3){
+        transform:rotate(-45deg) translate(6px,-6px);
     }
 
     .hero{
